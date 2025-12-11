@@ -4,192 +4,526 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pegasus | Історія Автомобільної Легенди</title>
-    <!-- Завантаження Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Використання шрифту Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        /* Глобальні стилі та змінні */
+        :root {
+            --primary-color: #FC5A5A; /* Червоний Pegasus */
+            --dark-color: #000000;
+            --light-color: #FFFFFF;
+            --text-color: #1a1a1a;
+            --text-secondary: #6b7280;
+            --max-width: 1280px;
+            --header-height: 64px;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #FFFFFF; /* Змінено на білий фон #FFFFFF */
-            color: #1a1a1a; /* Темний текст */
+            background-color: var(--light-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
         }
-        /* Новий червоний колір для кнопок (FC5A5A) */
-        .pegasus-gradient {
-            background-color: #FC5A5A; /* Просто суцільний червоний для кнопок */
+
+        /* Утилітарні класи */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 1rem;
         }
-        /* Червоний градієнт для тексту */
-        .text-gradient {
-            background-image: linear-gradient(to right, #FC5A5A, #e54d4d);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+
+        .pegasus-button {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px; /* rounded-full */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
+
+        .pegasus-button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        .section-padding {
+            padding-top: 5rem; /* py-20 */
+            padding-bottom: 5rem; /* py-20 */
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
         /* Анімація для Hero секції */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
         .animate-fadeInUp {
             animation: fadeInUp 1s ease-out forwards;
         }
-        /* Стиль для елементів, які тепер будуть на світлому фоні (картки) */
-        .card-bg {
-            background-color: #FFFFFF; /* Білі картки */
-            color: #1a1a1a;
+        
+        /* Червоний градієнт для тексту */
+        .text-gradient {
+            background-image: linear-gradient(to right, var(--primary-color), #e54d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
         }
+
+        /* Навігація */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: var(--dark-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--header-height);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: none;
+        }
+        
+        .nav-links a {
+            color: var(--light-color);
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+
+        .nav-links a:hover {
+            background-color: #1f2937; /* hover:bg-gray-700 */
+            color: var(--primary-color);
+        }
+
+        /* Мобільне меню */
+        .mobile-menu-btn {
+            display: block; /* За замовчуванням видима */
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+            color: #9ca3af; /* text-gray-400 */
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            color: var(--light-color);
+            background-color: #1f2937;
+        }
+
+        .mobile-menu {
+            display: none;
+            padding: 0.5rem 0;
+            background-color: var(--dark-color);
+        }
+
+        .mobile-menu a {
+            color: var(--light-color);
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu a:hover {
+            background-color: #1f2937;
+            color: var(--primary-color);
+        }
+
+        /* Медіазапити для десктопу */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: none;
+            }
+            .section-padding {
+                padding-top: 7rem; 
+                padding-bottom: 7rem;
+            }
+        }
+        
+        /* Секція Hero */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+            padding-top: 5rem; /* pt-20 */
+            padding-bottom: 7rem; /* pb-28 */
+            min-height: 500px;
+        }
+
+        @media (min-width: 640px) {
+            .hero-section {
+                padding-top: 8rem; /* sm:pt-32 */
+                padding-bottom: 10rem; /* sm:pb-40 */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-section {
+                padding-top: 12rem; /* lg:pt-48 */
+                padding-bottom: 14rem; /* lg:pb-56 */
+            }
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('https://placehold.co/1920x1080/FFFFFF/6e6e6e?text=Фон+з+автомобілем+класичного+дизайну');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 1;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(to top, var(--light-color), transparent);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .hero-title {
+            font-size: 2.25rem; /* text-4xl */
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -0.025em; /* tracking-tight */
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-title {
+                font-size: 3.75rem; /* sm:text-6xl */
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 4.5rem; /* lg:text-7xl */
+            }
+        }
+        
+        .hero-subtitle {
+            margin-top: 0.75rem;
+            max-width: 42rem; /* max-w-2xl */
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.25rem; /* text-xl */
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-subtitle {
+                margin-top: 1.25rem; /* sm:mt-5 */
+                font-size: 1.5rem; /* sm:text-2xl */
+            }
+        }
+        
+        /* Секція Історії та Картки */
+        .grid-3-cols {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-3-cols {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .card {
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06); /* shadow-xl */
+            border: 1px solid #e5e7eb; /* border-gray-200 */
+            transition: all 0.3s ease;
+            transform: translateY(0);
+            background-color: var(--light-color);
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
+            transform: translateY(-4px); /* hover:-translate-y-1 */
+        }
+
+        .card-icon {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 0.75rem;
+        }
+        
+        .card-text {
+            color: var(--text-secondary);
+        }
+        
+        /* Секція Контакти */
+        .contact-form-wrapper {
+            max-width: 32rem; /* max-w-lg */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            background-color: #f3f4f6; /* bg-gray-100 */
+            border: 1px solid #d1d5db; /* border-gray-300 */
+            border-radius: 0.5rem;
+            color: var(--dark-color);
+            transition: all 0.15s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 1px var(--primary-color);
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Футер */
+        .footer {
+            background-color: var(--dark-color);
+            border-top: 1px solid #4b5563; /* border-gray-700 */
+        }
+        
+        .footer-content {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            color: #d1d5db; /* text-gray-300 */
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--light-color);
+        }
+        
+        .footer-copyright {
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            color: #6b7280; /* text-gray-500 */
+        }
+        
+        /* Додаткові стилі для SVG */
+        .icon-svg {
+            width: 2.5rem; /* w-10 */
+            height: 2.5rem; /* h-10 */
+        }
+
     </style>
 </head>
 <body>
 
     <!-- Навігація -->
-    <header class="sticky top-0 z-50 bg-[#000000] backdrop-blur-sm shadow-lg"> <!-- Чорний бар -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Логотип -->
-                <div class="flex-shrink-0">
-                    <span class="text-2xl font-bold text-[#FC5A5A]">Pegasus</span> <!-- Червоний логотип -->
-                </div>
-                <!-- Меню для десктопу -->
-                <nav class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <!-- Змінено: Посилання тепер білого кольору (text-white) -->
-                        <a href="#home" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] px-3 py-2 rounded-md text-sm font-medium transition duration-300">Головна</a>
-                        <a href="#history" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] px-3 py-2 rounded-md text-sm font-medium transition duration-300">Історія</a>
-                        <a href="#milestones" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] px-3 py-2 rounded-md text-sm font-medium transition duration-300">Етапи</a>
-                        <a href="#contact" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] px-3 py-2 rounded-md text-sm font-medium transition duration-300">Контакти</a>
-                    </div>
-                </nav>
-                <!-- Кнопка мобільного меню -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-expanded="false">
-                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
-                    </button>
-                </div>
+    <header class="header">
+        <div class="container navbar">
+            <!-- Логотип -->
+            <div class="flex-shrink-0">
+                <span class="logo">Pegasus</span>
+            </div>
+            <!-- Меню для десктопу -->
+            <nav class="nav-links" id="desktop-menu">
+                <a href="#home">Головна</a>
+                <a href="#history">Історія</a>
+                <a href="#milestones">Етапи</a>
+                <a href="#contact">Контакти</a>
+            </nav>
+            <!-- Кнопка мобільного меню -->
+            <div class="md-hidden">
+                <button id="mobile-menu-button" type="button" class="mobile-menu-btn" aria-expanded="false">
+                    <svg class="block icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
             </div>
         </div>
 
         <!-- Мобільне меню (ховається за замовчуванням) -->
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <!-- Змінено: Посилання тепер білого кольору (text-white) -->
-                <a href="#home" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] block px-3 py-2 rounded-md text-base font-medium">Головна</a>
-                <a href="#history" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] block px-3 py-2 rounded-md text-base font-medium">Історія</a>
-                <a href="#milestones" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] block px-3 py-2 rounded-md text-base font-medium">Етапи</a>
-                <a href="#contact" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] block px-3 py-2 rounded-md text-base font-medium">Контакти</a>
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="container" style="padding: 0.5rem 1rem;">
+                <a href="#home">Головна</a>
+                <a href="#history">Історія</a>
+                <a href="#milestones">Етапи</a>
+                <a href="#contact">Контакти</a>
             </div>
         </div>
     </header>
 
     <!-- Секція Hero (Головна) -->
-    <section id="home" class="relative overflow-hidden pt-20 pb-28 sm:pt-32 sm:pb-40 lg:pt-48 lg:pb-56">
-        <!-- Декоративний фон (автомобільний мотив) -->
-        <div class="absolute inset-0 bg-cover bg-center opacity-10" 
-             style="background-image: url('https://placehold.co/1920x1080/FFFFFF/6e6e6e?text=Фон+з+автомобілем+класичного+дизайну');" 
-             onerror="this.style.backgroundImage='none'"></div> <!-- Змінено на білий #FFFFFF -->
-        <div class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] to-transparent"></div> <!-- Змінено на білий #FFFFFF -->
-
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-black mb-6 animate-fadeInUp"> <!-- Чорний текст -->
-                Спадщина швидкості. <span class="text-gradient">Інновації від Pegasus.</span> <!-- Червоний градієнт -->
+    <section id="home" class="hero-section">
+        <div class="container hero-content text-center">
+            <h1 class="hero-title animate-fadeInUp">
+                Спадщина швидкості. <span class="text-gradient">Інновації від Pegasus.</span>
             </h1>
-            <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-700 sm:mt-5 sm:text-2xl mb-10">
+            <p class="hero-subtitle">
                 Компанія, заснована на пристрасті до інженерії та бажанні переосмислити майбутнє автомобілебудування.
             </p>
             <div class="flex justify-center">
-                <a href="#history" class="pegasus-gradient text-white font-semibold py-3 px-8 rounded-full text-lg shadow-xl hover:opacity-90 transition duration-300 transform hover:scale-105">
+                <a href="#history" class="pegasus-button">
                     Дізнатися історію
-                </a> <!-- Червона кнопка -->
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Секція Історія Заснування (замість Послуг) -->
-    <section id="history" class="py-20 sm:py-28 bg-[#FFFFFF]"> <!-- Білий фон для карток -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-black text-center mb-12 sm:mb-16">Наша Спадщина: Історія Заснування</h2>
+    <section id="history" class="section-padding">
+        <div class="container">
+            <h2 class="hero-title" style="margin-bottom: 4rem; font-size: 1.875rem;">Наша Спадщина: Історія Заснування</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid-3-cols">
                 <!-- Картка 1: Зародження Ідеї -->
-                <div class="card-bg p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
-                    <div class="text-[#FC5A5A] mb-4"> <!-- Червона іконка -->
+                <div class="card">
+                    <div class="card-icon">
                         <!-- Іконка: Лампочка (Ідея) -->
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-2m0 0l-3-2m3 2v4m10 5a2 2 0 11-4 0 2 2 0 014 0zm-8 0a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4m.868-4.868A4 4 0 0118 7v4"></path></svg>
+                        <svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-2m0 0l-3-2m3 2v4m10 5a2 2 0 11-4 0 2 2 0 014 0zm-8 0a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4m.868-4.868A4 4 0 0118 7v4"></path></svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-black mb-3">1947: Зародження Ідеї</h3>
-                    <p class="text-gray-600">Геній-інженер Альфред Пегасі на задньому дворі своєї майстерні сформулював концепцію "ідеального автомобіля", поєднуючи продуктивність і елегантність.</p>
+                    <h3 class="card-title">1947: Зародження Ідеї</h3>
+                    <p class="card-text">Геній-інженер Альфред Пегасі на задньому дворі своєї майстерні сформулював концепцію "ідеального автомобіля", поєднуючи продуктивність і елегантність.</p>
                 </div>
                 
                 <!-- Картка 2: Перший Прототип -->
-                <div class="card-bg p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
-                    <div class="text-[#FC5A5A] mb-4"> <!-- Червона іконка -->
+                <div class="card">
+                    <div class="card-icon">
                         <!-- Іконка: Гайковий ключ / Шестерня (Інженерія) -->
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        <svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-black mb-3">1952: Народження Моделі "А"</h3>
-                    <p class="text-gray-600">Після п'яти років таємних розробок, було представлено перший ходовий прототип Pegasus — зразок витонченої ручної роботи та передових для свого часу двигунів.</p>
+                    <h3 class="card-title">1952: Народження Моделі "А"</h3>
+                    <p class="card-text">Після п'яти років таємних розробок, було представлено перший ходовий прототип Pegasus — зразок витонченої ручної роботи та передових для свого часу двигунів.</p>
                 </div>
 
                 <!-- Картка 3: Офіційне Заснування -->
-                <div class="card-bg p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
-                    <div class="text-[#FC5A5A] mb-4"> <!-- Червона іконка -->
+                <div class="card">
+                    <div class="card-icon">
                         <!-- Іконка: Прапор / Хронометр (Початок) -->
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
-                    <h3 class="text-xl font-semibold text-black mb-3">1955: Офіційний Старт</h3>
-                    <p class="text-gray-600">Компанія Pegasus була офіційно зареєстрована, розпочавши обмежене виробництво своєї першої серійної моделі та заявивши про себе як про гравця у світі розкоші та продуктивності.</p>
+                    <h3 class="card-title">1955: Офіційний Старт</h3>
+                    <p class="card-text">Компанія Pegasus була офіційно зареєстрована, розпочавши обмежене виробництво своєї першої серійної моделі та заявивши про себе як про гравця у світі розкоші та продуктивності.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Секція Філософія (раніше Ключові Етапи) -->
-    <section id="milestones" class="py-20 sm:py-28 bg-[#FFFFFF]"> <!-- Змінено на білий фон для секції #FFFFFF -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:items-center md:justify-center">
-                <div class="w-full text-center">
-                    <h2 class="text-3xl font-extrabold text-black mb-6">Філософія</h2> <!-- Чорний текст -->
-                    <p class="text-lg text-gray-700 mb-4 max-w-4xl mx-auto"> <!-- Темно-сірий текст -->
-                        Філософія Pegasus завжди ґрунтувалася на трьох стовпах: **ручна майстерність**, **технологічна перевага** та **непохитна увага до деталей**.
-                    </p>
-                    <p class="text-lg text-gray-700 mb-8 max-w-4xl mx-auto"> <!-- Темно-сірий текст -->
-                        У 1960-х роках наші моделі домінували на європейських трасах, а сьогодні ми інвестуємо у R&D для створення найефективніших електричних платформ, зберігаючи при цьому дух класичного дизайну.
-                    </p>
-                    <a href="#contact" class="pegasus-gradient text-white font-semibold py-2 px-6 rounded-lg text-md shadow-lg hover:opacity-90 transition duration-300">
-                        Обговорити майбутнє
-                    </a> <!-- Червона кнопка -->
-                </div>
-                <!-- Блок із зображенням, що був тут, видалено -->
+    <section id="milestones" class="section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="hero-title" style="margin-bottom: 1.5rem; font-size: 1.875rem;">Філософія</h2>
+                <p class="hero-subtitle" style="margin-top: 0; margin-bottom: 1rem; font-size: 1.125rem; max-width: 48rem;">
+                    Філософія Pegasus завжди ґрунтувалася на трьох стовпах: **ручна майстерність**, **технологічна перевага** та **непохитна увага до деталей**.
+                </p>
+                <p class="hero-subtitle" style="margin-top: 0; margin-bottom: 2rem; font-size: 1.125rem; max-width: 48rem;">
+                    У 1960-х роках наші моделі домінували на європейських трасах, а сьогодні ми інвестуємо у R&D для створення найефективніших електричних платформ, зберігаючи при цьому дух класичного дизайну.
+                </p>
+                <a href="#contact" class="pegasus-button" style="border-radius: 0.5rem; padding: 0.5rem 1.5rem; font-size: 1rem;">
+                    Обговорити майбутнє
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Секція Контакти -->
-    <section id="contact" class="py-20 sm:py-28 bg-[#FFFFFF]"> <!-- Білий фон -->
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-black text-center mb-12">Зв'яжіться з Нами</h2>
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <h2 class="hero-title" style="margin-bottom: 3rem; font-size: 1.875rem;">Зв'яжіться з Нами</h2>
             
-            <div class="max-w-lg mx-auto card-bg p-8 rounded-xl shadow-2xl border border-gray-200">
-                <form onsubmit="handleContactForm(event)">
-                    <div class="mb-5">
-                        <label for="name" class="block text-sm font-medium text-black mb-2">Ваше Ім'я</label>
-                        <input type="text" id="name" name="name" required class="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-black focus:ring-[#FC5A5A] focus:border-[#FC5A5A] transition duration-150">
+            <div class="contact-form-wrapper card">
+                <form onsubmit="handleContactForm(event)" class="contact-form">
+                    <div style="margin-bottom: 1.25rem;">
+                        <label for="name" class="form-label">Ваше Ім'я</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
-                    <div class="mb-5">
-                        <label for="email" class="block text-sm font-medium text-black mb-2">Електронна Пошта</label>
-                        <input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-black focus:ring-[#FC5A5A] focus:border-[#FC5A5A] transition duration-150">
+                    <div style="margin-bottom: 1.25rem;">
+                        <label for="email" class="form-label">Електронна Пошта</label>
+                        <input type="email" id="email" name="email" required>
                     </div>
-                    <div class="mb-5">
-                        <label for="message" class="block text-sm font-medium text-black mb-2">Повідомлення</label>
-                        <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-black focus:ring-[#FC5A5A] focus:border-[#FC5A5A] transition duration-150"></textarea>
+                    <div style="margin-bottom: 1.25rem;">
+                        <label for="message" class="form-label">Повідомлення</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
                     </div>
                     
-                    <button type="submit" class="pegasus-gradient text-white font-bold py-3 px-6 rounded-lg w-full shadow-lg hover:opacity-90 transition duration-300">
+                    <button type="submit" class="pegasus-button" style="border-radius: 0.5rem; padding: 0.75rem 1.5rem; font-size: 1.125rem; width: 100%;">
                         Надіслати Запит
-                    </button> <!-- Червона кнопка -->
+                    </button>
                     
-                    <div id="contact-message" class="mt-4 text-center hidden text-green-600">
+                    <div id="contact-message" style="margin-top: 1rem; text-align: center; color: #15803d; display: none;">
                         Дякуємо! Ваш запит щодо історії або співпраці отримано.
                     </div>
                 </form>
@@ -199,20 +533,19 @@
     </section>
 
     <!-- Футер -->
-    <footer class="bg-[#000000] border-t border-gray-700"> <!-- Чорний фон -->
-        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
-            <div class="mb-4">
-                <span class="text-2xl font-bold text-[#FC5A5A]">Pegasus</span> <!-- Червоний логотип -->
-                <p class="text-gray-400 text-sm mt-1">Крок уперед у світі автомобілебудування.</p>
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <span class="logo">Pegasus</span>
+                <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 0.25rem;">Крок уперед у світі автомобілебудування.</p>
             </div>
-            <div class="flex justify-center space-x-6 text-gray-300 text-sm">
-                <!-- Футерні посилання залишилися нейтральними, як і було -->
-                <a href="#home" class="hover:text-white">Головна</a>
-                <a href="#history" class="hover:text-white">Історія</a>
-                <a href="#milestones" class="hover:text-white">Етапи</a> <!-- Змінено тут -->
-                <a href="#contact" class="hover:text-white">Контакти</a>
+            <div class="footer-links">
+                <a href="#home">Головна</a>
+                <a href="#history">Історія</a>
+                <a href="#milestones">Етапи</a>
+                <a href="#contact">Контакти</a>
             </div>
-            <p class="mt-6 text-xs text-gray-500">
+            <p class="footer-copyright">
                 &copy; 2025 Pegasus Automotive. Всі права захищені.
             </p>
         </div>
@@ -227,28 +560,32 @@
             const messageElement = document.getElementById('contact-message');
             
             // Імітація успішної відправки (оскільки бекенд відсутній)
-            messageElement.classList.remove('hidden');
+            messageElement.style.display = 'block';
             
             // Очищення форми
             event.target.reset();
 
             // Приховати повідомлення через 5 секунд
             setTimeout(() => {
-                messageElement.classList.add('hidden');
+                messageElement.style.display = 'none';
             }, 5000);
         }
 
         // Логіка для мобільного меню
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+            }
             
             // Закриття меню при кліку на посилання
             menu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
                     // Перевірка, чи це посилання на секцію (якорне посилання)
                     if (link.getAttribute('href').startsWith('#')) {
-                        menu.classList.add('hidden');
+                        menu.style.display = 'none';
                     }
                 });
             });
@@ -267,4 +604,4 @@
 
     </script>
 </body>
-</html>$git\ add$
+</html>
