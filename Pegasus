@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pegasus | Історія Автомобільної Легенди</title>
+    <!-- Завантаження Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Використання шрифту Inter -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF; /* Змінено на білий фон #FFFFFF */
+            color: #1a1a1a; /* Темний текст */
+        }
+        /* Новий червоний колір для кнопок (FC5A5A) */
+        .pegasus-gradient {
+            background-color: #FC5A5A; /* Просто суцільний червоний для кнопок */
+        }
+        /* Червоний градієнт для тексту */
+        .text-gradient {
+            background-image: linear-gradient(to right, #FC5A5A, #e54d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Анімація для Hero секції */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        /* Стиль для елементів, які тепер будуть на світлому фоні (картки) */
+        .card-bg {
+            background-color: #FFFFFF; /* Білі картки */
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навігація -->
+    <header class="sticky top-0 z-50 bg-[#000000] backdrop-blur-sm shadow-lg"> <!-- Чорний бар -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Логотип -->
+                <div class="flex-shrink-0">
+                    <span class="text-2xl font-bold text-[#FC5A5A]">Pegasus</span> <!-- Червоний логотип -->
+                </div>
+                <!-- Меню для десктопу -->
+                <nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <!-- Текст посилань тепер червоний (#FC5A5A) -->
+                        <a href="#home" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">Головна</a>
+                        <a href="#history" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">Історія</a>
+                        <a href="#milestones" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">Етапи</a>
+                        <!-- Повертаємо посилання "Контакти" як звичайний текст -->
+                        <a href="#contact" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">Контакти</a>
+                    </div>
+                </nav>
+                <!-- Кнопка мобільного меню -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-expanded="false">
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Мобільне меню (ховається за замовчуванням) -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <!-- Текст посилань тепер червоний (#FC5A5A) -->
+                <a href="#home" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Головна</a>
+                <a href="#history" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Історія</a>
+                <a href="#milestones" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Етапи</a>
+                <!-- Повертаємо посилання "Контакти" як звичайний текст -->
+                <a href="#contact" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Контакти</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Секція Hero (Головна) -->
+    <section id="home" class="relative overflow-hidden pt-20 pb-28 sm:pt-32 sm:pb-40 lg:pt-48 lg:pb-56">
+        <!-- Декоративний фон (автомобільний мотив) -->
+        <div class="absolute inset-0 bg-cover bg-center opacity-10" 
+             style="background-image: url('https://placehold.co/1920x1080/FFFFFF/6e6e6e?text=Фон+з+автомобілем+класичного+дизайну');" 
+             onerror="this.style.backgroundImage='none'"></div> <!-- Змінено на білий #FFFFFF -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#FFFFFF] to-transparent"></div> <!-- Змінено на білий #FFFFFF -->
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-black mb-6 animate-fadeInUp"> <!-- Чорний текст -->
+                Спадщина швидкості. <span class="text-gradient">Інновації від Pegasus.</span> <!-- Червоний градієнт -->
+            </h1>
+            <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-700 sm:mt-5 sm:text-2xl mb-10">
+                Компанія, заснована на пристрасті до інженерії та бажанні переосмислити майбутнє автомобілебудування.
+            </p>
+            <div class="flex justify-center">
+                <a href="#history" class="pegasus-gradient text-white font-semibold py-3 px-8 rounded-full text-lg shadow-xl hover:opacity-90 transition duration-300 transform hover:scale-105">
+                    Дізнатися історію
+                </a> <!-- Червона кнопка -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Секція Історія Заснування (замість Послуг) -->
+    <section id="history" class="py-20 sm:py-28 bg-[#FFFFFF]"> <!-- Білий фон для карток -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-extrabold text-black text-center mb-12 sm:mb-16">Наша Спадщина: Історія Заснування</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Картка 1: Зародження Ідеї -->
+                <div class="card-bg p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
+                    <div class="text-[#FC5A5A] mb-4"> <!-- Червона іконка -->
+                        <!-- Іконка: Лампочка (Ідея) -->
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-2m0 0l-3-2m3 2v4m10 5a2 2 0 11-4 0 2 2 0 014 0zm-8 0a2 2 0 11-4 0 2 2 0 014 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4m.868-4.868A4 4 0 0118 7v4"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-black mb-3">1947: Зародження Ідеї</h3>
+                    <p class="text-gray-600">Геній-інженер Альфред Пегасі на задньому дворі своєї майстерні сформулював концепцію "ідеального автомобіля", поєднуючи продуктивність і елегантність.</p>
+                </div>
+                
+                <!-- Картка 2: Перший Прототип -->
+                <div class="card-bg p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
+                    <div class="text-[#FC5A5A] mb-4"> <!-- Червона іконка -->
+                        <!-- Іконка: Гайковий ключ / Шестерня (Інженерія) -->
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-black mb-3">1952: Народження Моделі "А"</h3>
+                    <p class="text-gray-600">Після п'яти років таємних розробок, було представлено перший ходовий прототип Pegasus — зразок витонченої ручної роботи та передових для свого часу двигунів.</p>
+                </div>
+
+                <!-- Картка 3: Офіційне Заснування -->
+                <div class="card-bg p-8 rounded-xl shadow-xl hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border border-gray-200">
+                    <div class="text-[#FC5A5A] mb-4"> <!-- Червона іконка -->
+                        <!-- Іконка: Прапор / Хронометр (Початок) -->
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-black mb-3">1955: Офіційний Старт</h3>
+                    <p class="text-gray-600">Компанія Pegasus була офіційно зареєстрована, розпочавши обмежене виробництво своєї першої серійної моделі та заявивши про себе як про гравця у світі розкоші та продуктивності.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секція Філософія (раніше Ключові Етапи) -->
+    <section id="milestones" class="py-20 sm:py-28 bg-[#FFFFFF]"> <!-- Змінено на білий фон для секції #FFFFFF -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:items-center md:justify-center">
+                <div class="w-full text-center">
+                    <h2 class="text-3xl font-extrabold text-black mb-6">Філософія</h2> <!-- Чорний текст -->
+                    <p class="text-lg text-gray-700 mb-4 max-w-4xl mx-auto"> <!-- Темно-сірий текст -->
+                        Філософія Pegasus завжди ґрунтувалася на трьох стовпах: **ручна майстерність**, **технологічна перевага** та **непохитна увага до деталей**.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-8 max-w-4xl mx-auto"> <!-- Темно-сірий текст -->
+                        У 1960-х роках наші моделі домінували на європейських трасах, а сьогодні ми інвестуємо у R&D для створення найефективніших електричних платформ, зберігаючи при цьому дух класичного дизайну.
+                    </p>
+                    <a href="#contact" class="pegasus-gradient text-white font-semibold py-2 px-6 rounded-lg text-md shadow-lg hover:opacity-90 transition duration-300">
+                        Обговорити майбутнє
+                    </a> <!-- Червона кнопка -->
+                </div>
+                <!-- Блок із зображенням, що був тут, видалено -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Секція Контакти -->
+    <section id="contact" class="py-20 sm:py-28 bg-[#FFFFFF]"> <!-- Білий фон -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-extrabold text-black text-center mb-12">Зв'яжіться з Нами</h2>
+            
+            <div class="max-w-lg mx-auto card-bg p-8 rounded-xl shadow-2xl border border-gray-200">
+                <form onsubmit="handleContactForm(event)">
+                    <div class="mb-5">
+                        <label for="name" class="block text-sm font-medium text-black mb-2">Ваше Ім'я</label>
+                        <input type="text" id="name" name="name" required class="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-black focus:ring-[#FC5A5A] focus:border-[#FC5A5A] transition duration-150">
+                    </div>
+                    <div class="mb-5">
+                        <label for="email" class="block text-sm font-medium text-black mb-2">Електронна Пошта</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-black focus:ring-[#FC5A5A] focus:border-[#FC5A5A] transition duration-150">
+                    </div>
+                    <div class="mb-5">
+                        <label for="message" class="block text-sm font-medium text-black mb-2">Повідомлення</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 bg-gray-100 border border-gray-300 rounded-lg text-black focus:ring-[#FC5A5A] focus:border-[#FC5A5A] transition duration-150"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="pegasus-gradient text-white font-bold py-3 px-6 rounded-lg w-full shadow-lg hover:opacity-90 transition duration-300">
+                        Надіслати Запит
+                    </button> <!-- Червона кнопка -->
+                    
+                    <div id="contact-message" class="mt-4 text-center hidden text-green-600">
+                        Дякуємо! Ваш запит щодо історії або співпраці отримано.
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="bg-[#000000] border-t border-gray-700"> <!-- Чорний фон -->
+        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+            <div class="mb-4">
+                <span class="text-2xl font-bold text-[#FC5A5A]">Pegasus</span> <!-- Червоний логотип -->
+                <p class="text-gray-400 text-sm mt-1">Крок уперед у світі автомобілебудування.</p>
+            </div>
+            <div class="flex justify-center space-x-6 text-gray-300 text-sm">
+                <a href="#home" class="hover:text-white">Головна</a>
+                <a href="#history" class="hover:text-white">Історія</a>
+                <a href="#milestones" class="hover:text-white">Етапи</a> <!-- Змінено тут -->
+                <a href="#contact" class="hover:text-white">Контакти</a>
+            </div>
+            <p class="mt-6 text-xs text-gray-500">
+                &copy; 2025 Pegasus Automotive. Всі права захищені.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript для інтерактивності -->
+    <script>
+        // Обробка форми контакту
+        function handleContactForm(event) {
+            event.preventDefault(); // Запобігання стандартній відправці форми
+            
+            const messageElement = document.getElementById('contact-message');
+            
+            // Імітація успішної відправки (оскільки бекенд відсутній)
+            messageElement.classList.remove('hidden');
+            
+            // Очищення форми
+            event.target.reset();
+
+            // Приховати повідомлення через 5 секунд
+            setTimeout(() => {
+                messageElement.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Логіка для мобільного меню
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            
+            // Закриття меню при кліку на посилання
+            menu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    // Перевірка, чи це посилання на секцію (якорне посилання)
+                    if (link.getAttribute('href').startsWith('#')) {
+                        menu.classList.add('hidden');
+                    }
+                });
+            });
+        });
+        
+        // Плавний скролінг для якірного меню
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
