@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pegasus | Історія Автомобільної Легенди</title>
     
-    <!-- Використання шрифту Inter -->
+    <!-- Використання шрифту Inter (єдиний зовнішній ресурс) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     
     <style>
@@ -41,11 +41,13 @@
             color: var(--light-color);
             font-weight: 600;
             padding: 0.75rem 2rem;
-            border-radius: 9999px; /* rounded-full */
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            border-radius: 9999px; /* округлення */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
+            border: none;
+            cursor: pointer;
         }
 
         .pegasus-button:hover {
@@ -54,8 +56,8 @@
         }
 
         .section-padding {
-            padding-top: 5rem; /* py-20 */
-            padding-bottom: 5rem; /* py-20 */
+            padding-top: 5rem;
+            padding-bottom: 5rem;
         }
 
         .text-center {
@@ -120,18 +122,18 @@
         }
 
         .nav-links a:hover {
-            background-color: #1f2937; /* hover:bg-gray-700 */
+            background-color: #1f2937;
             color: var(--primary-color);
         }
 
         /* Мобільне меню */
         .mobile-menu-btn {
-            display: block; /* За замовчуванням видима */
+            display: block;
             background: none;
             border: none;
             padding: 0.5rem;
             border-radius: 0.375rem;
-            color: #9ca3af; /* text-gray-400 */
+            color: #9ca3af;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -150,7 +152,7 @@
         .mobile-menu a {
             color: var(--light-color);
             display: block;
-            padding: 0.5rem 0.75rem;
+            padding: 0.5rem 1rem;
             border-radius: 0.375rem;
             font-size: 1rem;
             font-weight: 500;
@@ -163,7 +165,7 @@
             color: var(--primary-color);
         }
 
-        /* Медіазапити для десктопу */
+        /* Медіазапити для десктопу (від 768px) */
         @media (min-width: 768px) {
             .nav-links {
                 display: flex;
@@ -181,22 +183,22 @@
         .hero-section {
             position: relative;
             overflow: hidden;
-            padding-top: 5rem; /* pt-20 */
-            padding-bottom: 7rem; /* pb-28 */
+            padding-top: 5rem;
+            padding-bottom: 7rem;
             min-height: 500px;
         }
 
         @media (min-width: 640px) {
             .hero-section {
-                padding-top: 8rem; /* sm:pt-32 */
-                padding-bottom: 10rem; /* sm:pb-40 */
+                padding-top: 8rem;
+                padding-bottom: 10rem;
             }
         }
 
         @media (min-width: 1024px) {
             .hero-section {
-                padding-top: 12rem; /* lg:pt-48 */
-                padding-bottom: 14rem; /* lg:pb-56 */
+                padding-top: 12rem;
+                padding-bottom: 14rem;
             }
         }
         
@@ -204,6 +206,7 @@
             content: '';
             position: absolute;
             inset: 0;
+            /* Фон з низькою прозорістю */
             background-image: url('https://placehold.co/1920x1080/FFFFFF/6e6e6e?text=Фон+з+автомобілем+класичного+дизайну');
             background-size: cover;
             background-position: center;
@@ -215,6 +218,7 @@
             content: '';
             position: absolute;
             inset: 0;
+            /* Градієнт для плавного переходу до світлого фону */
             background-image: linear-gradient(to top, var(--light-color), transparent);
             z-index: 2;
         }
@@ -225,40 +229,40 @@
         }
         
         .hero-title {
-            font-size: 2.25rem; /* text-4xl */
+            font-size: 2.25rem;
             line-height: 1.1;
             font-weight: 800;
-            letter-spacing: -0.025em; /* tracking-tight */
+            letter-spacing: -0.025em;
             color: var(--dark-color);
             margin-bottom: 1.5rem;
         }
         
         @media (min-width: 640px) {
             .hero-title {
-                font-size: 3.75rem; /* sm:text-6xl */
+                font-size: 3.75rem;
             }
         }
         
         @media (min-width: 1024px) {
             .hero-title {
-                font-size: 4.5rem; /* lg:text-7xl */
+                font-size: 4.5rem;
             }
         }
         
         .hero-subtitle {
             margin-top: 0.75rem;
-            max-width: 42rem; /* max-w-2xl */
+            max-width: 42rem;
             margin-left: auto;
             margin-right: auto;
-            font-size: 1.25rem; /* text-xl */
+            font-size: 1.25rem;
             color: var(--text-secondary);
             margin-bottom: 2.5rem;
         }
         
         @media (min-width: 640px) {
             .hero-subtitle {
-                margin-top: 1.25rem; /* sm:mt-5 */
-                font-size: 1.5rem; /* sm:text-2xl */
+                margin-top: 1.25rem;
+                font-size: 1.5rem;
             }
         }
         
@@ -278,16 +282,16 @@
         .card {
             padding: 2rem;
             border-radius: 0.75rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06); /* shadow-xl */
-            border: 1px solid #e5e7eb; /* border-gray-200 */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+            border: 1px solid #e5e7eb;
             transition: all 0.3s ease;
             transform: translateY(0);
             background-color: var(--light-color);
         }
 
         .card:hover {
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
-            transform: translateY(-4px); /* hover:-translate-y-1 */
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-4px);
         }
 
         .card-icon {
@@ -308,7 +312,7 @@
         
         /* Секція Контакти */
         .contact-form-wrapper {
-            max-width: 32rem; /* max-w-lg */
+            max-width: 32rem;
             margin-left: auto;
             margin-right: auto;
         }
@@ -318,8 +322,8 @@
         .contact-form textarea {
             width: 100%;
             padding: 0.5rem 1rem;
-            background-color: #f3f4f6; /* bg-gray-100 */
-            border: 1px solid #d1d5db; /* border-gray-300 */
+            background-color: #f3f4f6;
+            border: 1px solid #d1d5db;
             border-radius: 0.5rem;
             color: var(--dark-color);
             transition: all 0.15s ease;
@@ -344,7 +348,7 @@
         /* Футер */
         .footer {
             background-color: var(--dark-color);
-            border-top: 1px solid #4b5563; /* border-gray-700 */
+            border-top: 1px solid #4b5563;
         }
         
         .footer-content {
@@ -361,13 +365,14 @@
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            color: #d1d5db; /* text-gray-300 */
+            color: #d1d5db;
             font-size: 0.875rem;
             margin-bottom: 1rem;
         }
         
         .footer-links a {
             text-decoration: none;
+            color: inherit; /* Успадкування кольору від батька */
         }
 
         .footer-links a:hover {
@@ -377,13 +382,13 @@
         .footer-copyright {
             margin-top: 1.5rem;
             font-size: 0.75rem;
-            color: #6b7280; /* text-gray-500 */
+            color: #6b7280;
         }
         
         /* Додаткові стилі для SVG */
         .icon-svg {
-            width: 2.5rem; /* w-10 */
-            height: 2.5rem; /* h-10 */
+            width: 2.5rem;
+            height: 2.5rem;
         }
 
     </style>
@@ -394,14 +399,14 @@
     <header class="header">
         <div class="container navbar">
             <!-- Логотип -->
-            <div class="flex-shrink-0">
-                <span class="logo">Pegasus</span>
+            <div style="flex-shrink: 0;">
+                <a href="#home" class="logo">Pegasus</a>
             </div>
             <!-- Меню для десктопу -->
             <nav class="nav-links" id="desktop-menu">
                 <a href="#home">Головна</a>
                 <a href="#history">Історія</a>
-                <a href="#milestones">Етапи</a>
+                <a href="#milestones">Філософія</a>
                 <a href="#contact">Контакти</a>
             </nav>
             <!-- Кнопка мобільного меню -->
@@ -419,7 +424,7 @@
             <div class="container" style="padding: 0.5rem 1rem;">
                 <a href="#home">Головна</a>
                 <a href="#history">Історія</a>
-                <a href="#milestones">Етапи</a>
+                <a href="#milestones">Філософія</a>
                 <a href="#contact">Контакти</a>
             </div>
         </div>
@@ -434,7 +439,7 @@
             <p class="hero-subtitle">
                 Компанія, заснована на пристрасті до інженерії та бажанні переосмислити майбутнє автомобілебудування.
             </p>
-            <div class="flex justify-center">
+            <div style="display: flex; justify-content: center;">
                 <a href="#history" class="pegasus-button">
                     Дізнатися історію
                 </a>
@@ -442,10 +447,10 @@
         </div>
     </section>
 
-    <!-- Секція Історія Заснування (замість Послуг) -->
+    <!-- Секція Історія Заснування -->
     <section id="history" class="section-padding">
         <div class="container">
-            <h2 class="hero-title" style="margin-bottom: 4rem; font-size: 1.875rem;">Наша Спадщина: Історія Заснування</h2>
+            <h2 class="hero-title" style="margin-bottom: 4rem; font-size: 1.875rem; text-align: center;">Наша Спадщина: Історія Заснування</h2>
             
             <div class="grid-3-cols">
                 <!-- Картка 1: Зародження Ідеї -->
@@ -481,7 +486,7 @@
         </div>
     </section>
 
-    <!-- Секція Філософія (раніше Ключові Етапи) -->
+    <!-- Секція Філософія -->
     <section id="milestones" class="section-padding">
         <div class="container">
             <div class="text-center">
@@ -502,7 +507,7 @@
     <!-- Секція Контакти -->
     <section id="contact" class="section-padding">
         <div class="container">
-            <h2 class="hero-title" style="margin-bottom: 3rem; font-size: 1.875rem;">Зв'яжіться з Нами</h2>
+            <h2 class="hero-title" style="margin-bottom: 3rem; font-size: 1.875rem; text-align: center;">Зв'яжіться з Нами</h2>
             
             <div class="contact-form-wrapper card">
                 <form onsubmit="handleContactForm(event)" class="contact-form">
@@ -542,7 +547,7 @@
             <div class="footer-links">
                 <a href="#home">Головна</a>
                 <a href="#history">Історія</a>
-                <a href="#milestones">Етапи</a>
+                <a href="#milestones">Філософія</a>
                 <a href="#contact">Контакти</a>
             </div>
             <p class="footer-copyright">
@@ -574,23 +579,30 @@
         // Логіка для мобільного меню
         document.getElementById('mobile-menu-button').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
-            if (menu.style.display === 'block') {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+
+            if (isExpanded) {
                 menu.style.display = 'none';
+                this.setAttribute('aria-expanded', 'false');
             } else {
                 menu.style.display = 'block';
+                this.setAttribute('aria-expanded', 'true');
             }
-            
-            // Закриття меню при кліку на посилання
-            menu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    // Перевірка, чи це посилання на секцію (якорне посилання)
-                    if (link.getAttribute('href').startsWith('#')) {
-                        menu.style.display = 'none';
-                    }
-                });
-            });
         });
         
+        // Закриття мобільного меню при кліку на посилання
+        document.getElementById('mobile-menu').querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobile-menu');
+                const menuButton = document.getElementById('mobile-menu-button');
+                // Перевірка, чи це посилання на секцію (якорне посилання)
+                if (link.getAttribute('href').startsWith('#')) {
+                    mobileMenu.style.display = 'none';
+                    menuButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+
         // Плавний скролінг для якірного меню
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
