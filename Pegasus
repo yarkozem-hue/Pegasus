@@ -52,12 +52,11 @@
                 <!-- Меню для десктопу -->
                 <nav class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <!-- Текст посилань тепер червоний (#FC5A5A) -->
-                        <a href="#home" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">Головна</a>
-                        <a href="#history" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">Історія</a>
-                        <a href="#milestones" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">Етапи</a>
-                        <!-- Повертаємо посилання "Контакти" як звичайний текст -->
-                        <a href="#contact" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition duration-300">Контакти</a>
+                        <!-- Змінено: Посилання тепер білого кольору (text-white) -->
+                        <a href="#home" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] px-3 py-2 rounded-md text-sm font-medium transition duration-300">Головна</a>
+                        <a href="#history" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] px-3 py-2 rounded-md text-sm font-medium transition duration-300">Історія</a>
+                        <a href="#milestones" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] px-3 py-2 rounded-md text-sm font-medium transition duration-300">Етапи</a>
+                        <a href="#contact" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] px-3 py-2 rounded-md text-sm font-medium transition duration-300">Контакти</a>
                     </div>
                 </nav>
                 <!-- Кнопка мобільного меню -->
@@ -74,12 +73,11 @@
         <!-- Мобільне меню (ховається за замовчуванням) -->
         <div class="md:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <!-- Текст посилань тепер червоний (#FC5A5A) -->
-                <a href="#home" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Головна</a>
-                <a href="#history" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Історія</a>
-                <a href="#milestones" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Етапи</a>
-                <!-- Повертаємо посилання "Контакти" як звичайний текст -->
-                <a href="#contact" class="text-[#FC5A5A] hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Контакти</a>
+                <!-- Змінено: Посилання тепер білого кольору (text-white) -->
+                <a href="#home" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] block px-3 py-2 rounded-md text-base font-medium">Головна</a>
+                <a href="#history" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] block px-3 py-2 rounded-md text-base font-medium">Історія</a>
+                <a href="#milestones" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] block px-3 py-2 rounded-md text-base font-medium">Етапи</a>
+                <a href="#contact" class="text-white hover:bg-gray-700 hover:text-[#FC5A5A] block px-3 py-2 rounded-md text-base font-medium">Контакти</a>
             </div>
         </div>
     </header>
@@ -208,6 +206,7 @@
                 <p class="text-gray-400 text-sm mt-1">Крок уперед у світі автомобілебудування.</p>
             </div>
             <div class="flex justify-center space-x-6 text-gray-300 text-sm">
+                <!-- Футерні посилання залишилися нейтральними, як і було -->
                 <a href="#home" class="hover:text-white">Головна</a>
                 <a href="#history" class="hover:text-white">Історія</a>
                 <a href="#milestones" class="hover:text-white">Етапи</a> <!-- Змінено тут -->
@@ -268,4 +267,4 @@
 
     </script>
 </body>
-</html>
+</html>$git\ add$
