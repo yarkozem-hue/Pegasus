@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Pegasus — історія автомобільної легенди: дизайн, інженерія та майбутнє електромобілів.">
+  <title>Pegasus | Історія Автомобільної Легенди</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до контенту</a>
+
+  <header class="header" role="banner">
+    <div class="container navbar">
+      <a href="#home" class="logo">Pegasus</a>
+
+      <nav class="nav-links" id="desktop-menu" role="navigation" aria-label="Головне меню">
+        <a href="#home">Головна</a>
+        <a href="#history">Історія</a>
+        <a href="#milestones">Філософія</a>
+        <a href="#contact">Контакти</a>
+      </nav>
+
+      <button id="mobile-menu-button" class="mobile-menu-btn" aria-expanded="false" aria-controls="mobile-menu" aria-label="Відкрити меню">
+        <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu" id="mobile-menu" hidden>
+      <div class="container mobile-menu-inner">
+        <a href="#home">Головна</a>
+        <a href="#history">Історія</a>
+        <a href="#milestones">Філософія</a>
+        <a href="#contact">Контакти</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="home" class="hero-section">
+      <div class="container hero-content text-center">
+        <h1 class="hero-title animate-fadeInUp">Спадщина швидкості. <span class="text-gradient">Інновації від Pegasus.</span></h1>
+        <p class="hero-subtitle">Компанія, заснована на пристрасті до інженерії та бажанні переосмислити майбутнє автомобілебудування.</p>
+        <div class="hero-actions">
+          <a href="#history" class="pegasus-button">Дізнатися історію</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="history" class="section-padding">
+      <div class="container">
+        <h2 class="section-title text-center">Наша Спадщина: Історія Заснування</h2>
+        <div class="grid-3-cols">
+          <article class="card" aria-labelledby="card1-title">
+            <div class="card-icon" aria-hidden="true">🔆</div>
+            <h3 id="card1-title" class="card-title">1940: Зародження Ідеї</h3>
+            <p class="card-text">Геній-інженер Альфред Пегасі на задньому дворі своєї майстерні сформулював концепцію "ідеального автомобіля", поєднуючи продуктивність і елегантність.</p>
+          </article>
+
+          <article class="card" aria-labelledby="card2-title">
+            <div class="card-icon" aria-hidden="true">⚙️</div>
+            <h3 id="card2-title" class="card-title">1952: Народження Моделі "А"</h3>
+            <p class="card-text">Після п'яти років таємних розробок, було представлено перший ходовий прототип Pegasus — зразок витонченої ручної роботи та передових для свого часу двигунів.</p>
+          </article>
+
+          <article class="card" aria-labelledby="card3-title">
+            <div class="card-icon" aria-hidden="true">🏁</div>
+            <h3 id="card3-title" class="card-title">1955: Офіційний Старт</h3>
+            <p class="card-text">Компанія Pegasus була офіційно зареєстрована, розпочавши обмежене виробництво своєї першої серійної моделі та заявивши про себе як про гравця у світі розкоші та продуктивності.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="milestones" class="section-padding">
+      <div class="container text-center">
+        <h2 class="section-title">Філософія</h2>
+        <p class="hero-subtitle">Філософія Pegasus завжди ґрунтувалася на трьох стовпах: <strong>ручна майстерність</strong>, <strong>технологічна перевага</strong> та <strong>непохитна увага до деталей</strong>.</p>
+        <p class="hero-subtitle">У 1960-х роках наші моделі домінували на європейських трасах, а сьогодні ми інвестуємо у R&amp;D для створення найефективніших електричних платформ, зберігаючи при цьому дух класичного дизайну.</p>
+        <a href="#contact" class="pegasus-button">Обговорити майбутнє</a>
+      </div>
+    </section>
+
+    <section id="contact" class="section-padding">
+      <div class="container">
+        <h2 class="section-title text-center">Зв'яжіться з Нами</h2>
+        <div class="contact-form-wrapper card">
+          <form id="contact-form" class="contact-form">
+            <label class="form-label" for="name">Ваше Ім'я</label>
+            <input type="text" id="name" name="name" required>
+
+            <label class="form-label" for="email">Електронна Пошта</label>
+            <input type="email" id="email" name="email" required>
+
+            <label class="form-label" for="message">Повідомлення</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <button type="submit" class="pegasus-button">Надіслати Запит</button>
+
+            <div id="contact-message" class="contact-message" role="status" aria-live="polite" hidden>Дякуємо! Ваш запит щодо історії або співпраці отримано.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer-content">
+      <div class="footer-logo">
+        <span class="logo">Pegasus</span>
+        <p class="muted">Крок уперед у світі автомобілебудування.</p>
+      </div>
+      <nav class="footer-links" aria-label="Посилання футера">
+        <a href="#home">Головна</a>
+        <a href="#history">Історія</a>
+        <a href="#milestones">Філософія</a>
+        <a href="#contact">Контакти</a>
+      </nav>
+      <p class="copyright">&copy; 2025 Pegasus Automotive. Всі права захищені.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Керування мобільним меню (клавіатурна доступність + Escape)
+    (function(){
+      const btn = document.getElementById('mobile-menu-button');
+      const menu = document.getElementById('mobile-menu');
+      const firstLink = menu.querySelector('a');
+
+      function openMenu(){
+        menu.hidden = false;
+        btn.setAttribute('aria-expanded','true');
+        firstLink.focus();
+      }
+
+      function closeMenu(){
+        menu.hidden = true;
+        btn.setAttribute('aria-expanded','false');
+        btn.focus();
+      }
+
+      btn.addEventListener('click', ()=>{
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        if(expanded) closeMenu(); else openMenu();
+      });
+
+      // Закрити по Escape
+      document.addEventListener('keydown', (e)=>{
+        if(e.key === 'Escape' && btn.getAttribute('aria-expanded') === 'true'){
+          closeMenu();
+        }
+      });
+
+      // Закрити меню при кліку на посилання-якорі
+      menu.querySelectorAll('a').forEach(link=>{
+        link.addEventListener('click', ()=> closeMenu());
+      });
+
+      // Contact form handling (imitated)
+      const form = document.getElementById('contact-form');
+      const msg = document.getElementById('contact-message');
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        msg.hidden = false;
+        form.reset();
+        setTimeout(()=> msg.hidden = true, 5000);
+      });
+        function handleContactForm(event) {
+          event.preventDefault(); // Запобігання стандартній відправці форми
+
+          const form = event.target;
+          const name = form.name.value.trim();
+          const email = form.email.value.trim();
+          const message = form.message.value.trim();
+          const messageElement = document.getElementById('contact-message');
+
+          // POST на бекенд; fallback у localStorage при помилці
+          fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, message })
+          }).then(resp => {
+            if(resp.ok){
+              messageElement.hidden = false;
+              form.reset();
+              setTimeout(()=> messageElement.hidden = true, 5000);
+            } else {
+              throw new Error('network');
+            }
+          }).catch(()=>{
+            try {
+              const key = 'pegasusContacts';
+              const existing = JSON.parse(localStorage.getItem(key) || '[]');
+              existing.push({ id: Date.now(), name, email, message, createdAt: new Date().toISOString() });
+              localStorage.setItem(key, JSON.stringify(existing));
+            } catch (e) { console.error(e) }
+            messageElement.hidden = false;
+            form.reset();
+            setTimeout(()=> messageElement.hidden = true, 5000);
+          });
+        }
+
+      // Smooth scroll for anchors
+      document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+        anchor.addEventListener('click', function(e){
+          const target = document.querySelector(this.getAttribute('href'));
+          if(target){
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

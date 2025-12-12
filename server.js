@@ -112,6 +112,13 @@ app.post('/api/contact', (req, res)=>{
     const arr = JSON.parse(raw || '[]');
     arr.push(item);
     fs.writeFileSync(DATA_FILE, JSON.stringify(arr, null, 2), 'utf8');
+    // Append NDJSON log for easier incremental archival/processing
+    try{
+      const logPath = path.join(DATA_DIR, 'messages.log');
+      fs.appendFileSync(logPath, JSON.stringify(item) + '\n', 'utf8');
+    }catch(e){
+      console.error('Failed to append messages.log', e);
+    }
     res.status(201).json(item);
   }catch(e){
     console.error(e);

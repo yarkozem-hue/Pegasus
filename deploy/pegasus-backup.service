@@ -1,0 +1,12 @@
+[Unit]
+Description=Pegasus daily backup of messages.json
+After=network.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/var/www/pegasus
+ExecStart=/bin/bash ./deploy/backup.sh
+User=www-data
+
+[Install]
+WantedBy=multi-user.target

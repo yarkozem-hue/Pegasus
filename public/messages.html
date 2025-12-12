@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Повідомлення — Pegasus</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .messages { max-width:900px; margin:2rem auto; padding:1rem }
+    .msg { border:1px solid #e5e7eb; padding:1rem; border-radius:.5rem; margin-bottom:.75rem; background:#fff }
+    .meta { color:#6b7280; font-size:.875rem }
+    .controls { text-align:right; margin-bottom:1rem }
+  </style>
+</head>
+<body>
+  <div class="container messages">
+    <h1>Збережені повідомлення</h1>
+    <div class="controls">
+      <button id="clear" class="pegasus-button" style="border-radius:.5rem;padding:.4rem .8rem">Очистити всі</button>
+      <a href="/" style="margin-left:1rem">Повернутись</a>
+    </div>
+    <div id="list"></div>
+    <div id="empty" style="color:#6b7280;">Немає збережених повідомлень.</div>
+  </div>
+
+  <script>
+    async function render(){
+      const list = document.getElementById('list');
+      const empty = document.getElementById('empty');
+      list.innerHTML='';
+      try{
+        const resp = await fetch('/api/messages');
+        if(!resp.ok) throw new Error('network');
+        const items = (await resp.json()).slice().reverse();
+        if(items.length===0){ empty.style.display='block'; return }
+        empty.style.display='none';
+        items.forEach(it=>{
+          const d = document.createElement('div'); d.className='msg';
+          d.innerHTML = `<div class=meta>${new Date(it.createdAt).toLocaleString()} — ${escapeHtml(it.email)} — ${escapeHtml(it.name)}</div><div style="margin-top:.5rem">${escapeHtml(it.message)}</div>`;
+          list.appendChild(d);
+        })
+      }catch(e){ console.error(e); empty.style.display='block' }
+    }
+    function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+    document.getElementById('clear').addEventListener('click', async ()=>{
+      if(confirm('Очистити всі повідомлення?')){
+        try{
+          const resp = await fetch('/api/messages', { method: 'DELETE' });
+          if(resp.ok) render(); else alert('Не вдалося очистити.');
+        }catch(e){ console.error(e); alert('Помилка'); }
+      }
+    });
+    render();
+  </script>
+</body>
+</html>

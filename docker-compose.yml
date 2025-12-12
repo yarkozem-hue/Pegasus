@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  pegasus:
+    build: .
+    container_name: pegasus
+    restart: unless-stopped
+    ports:
+      - "5174:5174"
+    volumes:
+      - ./data:/usr/src/app/data
+    environment:
+      - NODE_ENV=production
+      - PORT=5174
+    networks:
+      - pegasus-net
+
+  proxy:
+    image: nginx:stable-alpine
+    container_name: pegasus-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - pegasus
+    networks:
+      - pegasus-net
+
+networks:
+  pegasus-net:
+    driver: bridge
