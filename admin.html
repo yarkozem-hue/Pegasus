@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin — Pegasus</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .admin{max-width:900px;margin:2rem auto;padding:1rem}
+    .form-row{margin-bottom:0.75rem}
+    .controls{display:flex;gap:.5rem;align-items:center}
+    .msg{border:1px solid #e5e7eb;padding:1rem;border-radius:.5rem;margin-bottom:.75rem;background:#fff}
+    .meta{color:#6b7280;font-size:.875rem}
+  </style>
+</head>
+<body>
+  <div class="container admin">
+    <h1>Адмін — Повідомлення</h1>
+    <div id="loginBox">
+      <div class="form-row">
+        <label>Логін</label>
+        <input id="user" />
+      </div>
+      <div class="form-row">
+        <label>Пароль</label>
+        <input id="pass" type="password" />
+      </div>
+      <div class="controls">
+        <button id="login" class="pegasus-button">Увійти</button>
+        <span id="loginStatus" style="color:#b91c1c;margin-left:1rem"></span>
+      </div>
+    </div>
+
+    <div id="adminPanel" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+        <div>
+          <button id="refresh" class="pegasus-button" style="border-radius:.5rem;padding:.4rem .8rem">Оновити</button>
+          <button id="clear" class="pegasus-button" style="border-radius:.5rem;padding:.4rem .8rem;margin-left:.5rem">Очистити всі</button>
+          <a id="export" class="pegasus-button" style="border-radius:.5rem;padding:.4rem .8rem;margin-left:.5rem" href="#">Експорт CSV</a>
+        </div>
+        <div>
+          <button id="logout" class="pegasus-button" style="border-radius:.5rem;padding:.4rem .8rem">Вихід</button>
+        </div>
+      </div>
+
+      <div id="list"></div>
+      <div id="empty" style="color:#6b7280;">Немає повідомлень.</div>
+    </div>
+  </div>
+
+  <script>
+    const loginBtn = document.getElementById('login');
+    const userEl = document.getElementById('user');
+    const passEl = document.getElementById('pass');
+    const status = document.getElementById('loginStatus');
+    const adminPanel = document.getElementById('adminPanel');
+    const loginBox = document.getElementById('loginBox');
+    const list = document.getElementById('list');
+    const empty = document.getElementById('empty');
+    const refreshBtn = document.getElementById('refresh');
+    const clearBtn = document.getElementById('clear');
+    const exportLink = document.getElementById('export');
+    const logoutBtn = document.getElementById('logout');
+
+    function setToken(t){ localStorage.setItem('pegasus_admin_token', t); }
+    function getToken(){ return localStorage.getItem('pegasus_admin_token'); }
+    function clearToken(){ localStorage.removeItem('pegasus_admin_token'); }
+
+    async function doLogin(){
+      status.textContent = '';
+      try{
+        const resp = await fetch('/api/admin/login', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ username: userEl.value, password: passEl.value }) });
+        if(!resp.ok) throw new Error('bad');
+        const json = await resp.json();
+        setToken(json.token);
+        showPanel();
+      }catch(e){ status.textContent = 'Невірно'; }
+    }
+
+    async function fetchMessages(){
+      list.innerHTML='';
+      empty.style.display='none';
+      const token = getToken();
+      if(!token) return showLogin();
+      try{
+        const resp = await fetch('/api/admin/messages', { headers: { 'Authorization': 'Bearer '+token } });
+        if(resp.status === 401) return showLogin();
+        const items = await resp.json();
+        if(!items || items.length===0){ empty.style.display='block'; return }
+        items.slice().reverse().forEach(it=>{
+          const d = document.createElement('div'); d.className='msg';
+          d.innerHTML = `<div class=meta>${new Date(it.createdAt).toLocaleString()} — ${escapeHtml(it.email)} — ${escapeHtml(it.name)}</div><div style="margin-top:.5rem">${escapeHtml(it.message)}</div>`;
+          list.appendChild(d);
+        })
+      }catch(e){ console.error(e); empty.style.display='block'; }
+    }
+
+    function escapeHtml(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+
+    async function clearMessages(){
+      if(!confirm('Очистити всі повідомлення?')) return;
+      const token = getToken(); if(!token) return showLogin();
+      try{
+        const resp = await fetch('/api/admin/messages', { method: 'DELETE', headers: { 'Authorization': 'Bearer '+token } });
+        if(resp.ok) fetchMessages(); else alert('Не вдалося очистити');
+      }catch(e){ alert('Помилка'); }
+    }
+
+    function showLogin(){ loginBox.style.display='block'; adminPanel.style.display='none'; }
+    function showPanel(){ loginBox.style.display='none'; adminPanel.style.display='block'; fetchMessages(); exportLink.href = '/api/admin/export'; }
+
+    loginBtn.addEventListener('click', doLogin);
+    refreshBtn.addEventListener('click', fetchMessages);
+    clearBtn.addEventListener('click', clearMessages);
+    logoutBtn.addEventListener('click', ()=>{ clearToken(); showLogin(); });
+
+    // auto-login if token present
+    if(getToken()) showPanel();
+
+    // Detect if Pages static hosting (no API) and warn user
+    (async function detectApi(){
+      try{
+        const resp = await fetch('/api/messages', { method: 'GET' });
+        if(resp.status === 404 || resp.status === 0) throw new Error('no-api');
+        // API exists — nothing to do
+      }catch(e){
+        const note = document.createElement('div');
+        note.style.padding = '1rem';
+        note.style.background = '#fff3cd';
+        note.style.border = '1px solid #ffeeba';
+        note.style.borderRadius = '.5rem';
+        note.style.marginBottom = '1rem';
+        note.textContent = 'Увага: цей хостинг не надає серверної частини (API). Адмін‑панель вимкнена на GitHub Pages або статичних хостингах.';
+        const container = document.querySelector('.container.admin');
+        if(container) container.insertBefore(note, container.firstChild);
+        // hide login controls to avoid confusion
+        loginBox.style.display = 'none';
+        adminPanel.style.display = 'none';
+      }
+    })();
+  </script>
+</body>
+</html>
