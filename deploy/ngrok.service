@@ -1,0 +1,19 @@
+[Unit]
+Description=ngrok tunnel for Pegasus
+After=network.target
+
+[Service]
+# Assumes ngrok authtoken is already installed via `ngrok config add-authtoken <TOKEN>`
+# It uses the system-wide `npx` to launch ngrok from the repository environment.
+Type=simple
+User=www-data
+WorkingDirectory=/home/www-data/Pegasus
+ExecStart=/usr/bin/env npx --yes ngrok http 5174 --log=stdout
+Restart=on-failure
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=pegasus-ngrok
+
+[Install]
+WantedBy=multi-user.target

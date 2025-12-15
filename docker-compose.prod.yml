@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  traefik:
+    image: traefik:v2.10
+    container_name: traefik
+    restart: unless-stopped
+    command:
+      - --api.insecure=false
+      - --providers.docker=true
+      - --entryPoints.web.address=:80
+      - --entryPoints.websecure.address=:443
+      - --certificatesResolvers.le.acme.email=${LETSENCRYPT_EMAIL}
+      - --certificatesResolvers.le.acme.storage=/letsencrypt/acme.json
+      - --certificatesResolvers.le.acme.httpChallenge.entryPoint=web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./deploy/traefik/acme.json:/letsencrypt/acme.json
+    networks:
+      - web
+
+  pegasus:
+    build: .
+    image: pegasus:latest
+    container_name: pegasus
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=5174
+      - ADMIN_USER=${ADMIN_USER}
+      - ADMIN_PASS=${ADMIN_PASS}
+    volumes:
+      - ./data:/usr/src/app/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pegasus.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.pegasus.entrypoints=websecure"
+      - "traefik.http.routers.pegasus.tls=true"
+      - "traefik.http.routers.pegasus.tls.certresolver=le"
+      - "traefik.http.middlewares.redirect-to-https.redirectScheme.scheme=https"
+      - "traefik.http.routers.pegasus-http.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.pegasus-http.entrypoints=web"
+      - "traefik.http.routers.pegasus-http.middlewares=redirect-to-https@docker"
+    networks:
+      - web
+
+networks:
+  web:
+    external: false

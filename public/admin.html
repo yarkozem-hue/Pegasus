@@ -116,6 +116,28 @@
 
     // auto-login if token present
     if(getToken()) showPanel();
+
+    // Detect if Pages static hosting (no API) and warn user
+    (async function detectApi(){
+      try{
+        const resp = await fetch('/api/messages', { method: 'GET' });
+        if(resp.status === 404 || resp.status === 0) throw new Error('no-api');
+        // API exists — nothing to do
+      }catch(e){
+        const note = document.createElement('div');
+        note.style.padding = '1rem';
+        note.style.background = '#fff3cd';
+        note.style.border = '1px solid #ffeeba';
+        note.style.borderRadius = '.5rem';
+        note.style.marginBottom = '1rem';
+        note.textContent = 'Увага: цей хостинг не надає серверної частини (API). Адмін‑панель вимкнена на GitHub Pages або статичних хостингах.';
+        const container = document.querySelector('.container.admin');
+        if(container) container.insertBefore(note, container.firstChild);
+        // hide login controls to avoid confusion
+        loginBox.style.display = 'none';
+        adminPanel.style.display = 'none';
+      }
+    })();
   </script>
 </body>
 </html>

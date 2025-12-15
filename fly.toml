@@ -1,0 +1,31 @@
+[app]
+  # change this name if you want a specific fly.dev subdomain
+  name = "pegasus"
+  primary_region = "iad"
+
+[build]
+  image = ""
+
+[env]
+  PORT = "5174"
+
+[experimental]
+  allowed_public_ports = [5174]
+
+[[services]]
+  internal_port = 5174
+  protocol = "tcp"
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+  [[services.ports]]
+    handlers = ["tls","http"]
+    port = 443
+  [[services.tcp_checks]]
+    interval = 10000
+    timeout = 2000
+    grace_period = 60000
+    restart_limit = 0
